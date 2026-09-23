@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Ericha ❤️</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Start Button Screen */
+        #startBtn {
+            background-color: #ff3366;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.4);
+            transition: transform 0.2s;
+        }
+        #startBtn:active {
+            transform: scale(0.95);
+        }
+
+        /* Main Content Container */
+        #mainContent {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Visual Beating Heart Effect */
+        .heart {
+            font-size: 80px;
+            color: #ff3366;
+            animation: beat 0.6s infinite alternate;
+            margin-bottom: 20px;
+        }
+        @keyframes beat {
+            to { transform: scale(1.15); }
+        }
+
+        /* Ericha's Photo Layout */
+        .gf-photo {
+            width: 180px;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid #ff3366;
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.5);
+            margin-bottom: 25px;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .card {
+            max-width: 500px;
+            border: 1px dashed #ff3366;
+            padding: 20px;
+            border-radius: 10px;
+            background: #1a1a1a;
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.2);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        /* Visibility Classes for Fade-ins */
+        .visible { opacity: 1; }
+        .divider { color: #ff3366; margin: 15px 0; }
+    </style>
+</head>
+<body>
+
+    <!-- Open Letter Button -->
+    <button id="startBtn" onclick="startExperience()">Open Letter ✉️</button>
+
+    <!-- Background Music streaming from the GitHub raw link -->
+    <audio id="bgMusic" src="https://githubusercontent.com" loop></audio>
+
+    <!-- Main Visuals -->
+    <div id="mainContent">
+        <div class="heart">❤️</div>
+        
+        <!-- Remember to upload her photo named 'ericha.png' next to this file -->
+        <img id="erichaPhoto" src="ericha.png" alt="Ericha" class="gf-photo">
+        
+        <div class="card" id="letterCard">
+            <div id="textContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        const gfName = "Ericha";
+        const yourName = "Kian";
+        const runtimeStr = "1 month";
+
+        const lines = [
+            `To my dearest ${gfName},<br><br>`,
+            `Every second with you feels like adding a bright new line of code to my life, making everything work better.<br>`,
+            `Thank you for bringing so much joy, patience, and warmth into my world.<br><br>`,
+            `<div class="divider">————————————————————————————</div>`,
+            `<strong>System Status: HAPPY MONTHSARY! 💕</strong><br>`,
+            `Total runtime together: ${runtimeStr} of pure happiness.<br>`,
+            `<div class="divider">————————————————————————————</div><br>`,
+            `Forever & always,<br>`,
+            `<strong>${yourName}</strong>`
+        ];
+
+        function startExperience() {
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'flex';
+            
+            // Play audio track
+            const music = document.getElementById('bgMusic');
+            music.play().catch(error => { console.log("Playback flag: ", error); });
+
+            // Reveal her photo smoothly alongside the heart animation
+            setTimeout(() => {
+                document.getElementById('erichaPhoto').classList.add('visible');
+            }, 500);
+
+            // Wait 3 seconds then fade in the text box and begin typing
+            setTimeout(() => {
+                document.getElementById('letterCard').classList.add('visible');
+                typeWriter();
+            }, 3000);
+        }
+
+        let currentLine = 0;
+        let currentChar = 0;
+        const container = document.getElementById('textContainer');
+
+        function typeWriter() {
+            if (currentLine < lines.length) {
+                let line = lines[currentLine];
+                if (line.startsWith('<')) {
+                    container.innerHTML += line;
+                    currentLine++;
+                    setTimeout(typeWriter, 400);
+                } else {
+                    if (currentChar < line.length) {
+                        if (line.substring(currentChar, currentChar + 4) === '<br>') {
+                            container.innerHTML += '<br>';
+                            currentChar += 4;
+                        } else {
+                            container.innerHTML += line.charAt(currentChar);
+                            currentChar++;
+                        }
+                        setTimeout(typeWriter, 25);
+                    } else {
+                        currentLine++;
+                        currentChar = 0;
+                        setTimeout(typeWriter, 200);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

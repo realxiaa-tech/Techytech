@@ -59,8 +59,9 @@
 
         /* Ericha's Photo Layout */
         .gf-photo {
-            width: 180px;
-            height: 240px;
+            width: 200px;
+            height: auto;
+            max-height: 280px;
             object-fit: cover;
             border-radius: 15px;
             border: 2px solid #ff3366;
@@ -71,7 +72,8 @@
         }
 
         .card {
-            max-width: 500px;
+            width: 100%;
+            max-width: 450px;
             border: 1px dashed #ff3366;
             padding: 20px;
             border-radius: 10px;
@@ -79,6 +81,7 @@
             box-shadow: 0 0 15px rgba(255, 51, 102, 0.2);
             opacity: 0;
             transition: opacity 1s ease-in-out;
+            box-sizing: border-box;
         }
         
         /* Visibility Classes for Fade-ins */
@@ -98,8 +101,8 @@
     <div id="mainContent">
         <div class="heart">❤️</div>
         
-        <!-- Remember to upload her photo named 'ericha.png' next to this file -->
-        <img id="erichaPhoto" src="ericha.png" alt="Ericha" class="gf-photo">
+        <!-- Embedded directly using an online link to her photo -->
+        <img id="erichaPhoto" src="https://apple.com" alt="Ericha" class="gf-photo">
         
         <div class="card" id="letterCard">
             <div id="textContainer"></div>
